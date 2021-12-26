@@ -12,5 +12,11 @@ const print = function (todo) {
 
 console.log(`You have ${todos.length} todos`)
 
-console.log(print(todos[0]))
-console.log(print(todos[todos.length - 2]))
+todos.splice(2, 1)
+todos.push('New added todo')
+todos.shift()
+
+// console.log(print(todos[0]))
+// console.log(print(todos[todos.length - 2]))
+
+console.log(todos)
