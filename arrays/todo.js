@@ -24,3 +24,7 @@ todos.forEach(function (item, index) {
 // console.log(print(todos[todos.length - 2]))
 
 console.log(todos)
+
+for(i = 0; i <= todos.length - 1; i++){
+    console.log(`${i+1}. ${todos[i]}`)
+}
