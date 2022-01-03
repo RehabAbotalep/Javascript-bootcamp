@@ -1,12 +1,12 @@
 const todos = [{
     title: 'Order cat food',
-    completed: true
+    completed: false
 }, {
     title: 'Clean the kitchen',
-    completed: false,
+    completed: true,
 }, {
     title: 'Do work',
-    completed: false,
+    completed: true,
 }]
 
 const deleteTodo = function (todos, todoTitle) {
@@ -25,7 +25,21 @@ const getThingsToDo = function (todos) {
     })
 }
 
-console.log(getThingsToDo(todos))
+const sortTodos = function (todos) {
+    todos.sort(function (a, b){
+        if(a.completed && !b.completed){
+            return -1
+        }else if(b.completed && !a.completed){
+            return 1
+        }else{
+            return 0
+        }
+    })
+}
+sortTodos(todos)
+console.log(todos)
+
+// console.log(getThingsToDo(todos))
 
 // deleteTodo(todos, 'Do Work')
 // console.log(todos)
