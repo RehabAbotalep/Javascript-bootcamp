@@ -19,8 +19,16 @@ const deleteTodo = function (todos, todoTitle) {
     }
 }
 
-deleteTodo(todos, 'Do Work')
-console.log(todos)
+const getThingsToDo = function (todos) {
+    return todos.filter(function (todo) {
+        return !todo.completed
+    })
+}
 
-deleteTodo(todos, 'not found todo')
-console.log(todos)
+console.log(getThingsToDo(todos))
+
+// deleteTodo(todos, 'Do Work')
+// console.log(todos)
+
+// deleteTodo(todos, 'not found todo')
+// console.log(todos)
