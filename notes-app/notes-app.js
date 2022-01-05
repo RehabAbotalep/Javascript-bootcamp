@@ -10,3 +10,8 @@ ps.forEach(function (p){
     console.log(p.textContent)
     //p.remove()
 })
+
+// create new element
+const newParagraph = document.createElement('p')
+newParagraph.textContent = 'New paragraph from javascript'
+document.querySelector('body').appendChild(newParagraph)
