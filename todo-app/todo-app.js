@@ -28,6 +28,10 @@ document.querySelector('#add-todo').addEventListener('click', function (e) {
     console.log('Adding new TODO')
 })
 
+document.querySelector('#new-todo').addEventListener('change', function (e) {
+    console.log(e.target.value)
+})
+
 
 
 // const ps = document.querySelectorAll('p')
