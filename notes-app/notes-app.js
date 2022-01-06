@@ -16,6 +16,12 @@ const newParagraph = document.createElement('p')
 newParagraph.textContent = 'New paragraph from javascript'
 document.querySelector('body').appendChild(newParagraph)
 
-document.querySelector('button').addEventListener('click', function (e) {
+document.querySelector('#create-note').addEventListener('click', function (e) {
     e.target.textContent = 'button was clicked'
+})
+
+document.querySelector('#remove-all').addEventListener('click', function () {
+    document.querySelectorAll('.note').forEach(function (note) {
+        note.remove()
+    })
 })
