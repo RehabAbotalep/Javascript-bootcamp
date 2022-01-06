@@ -15,3 +15,7 @@ ps.forEach(function (p){
 const newParagraph = document.createElement('p')
 newParagraph.textContent = 'New paragraph from javascript'
 document.querySelector('body').appendChild(newParagraph)
+
+document.querySelector('button').addEventListener('click', function (e) {
+    e.target.textContent = 'button was clicked'
+})
