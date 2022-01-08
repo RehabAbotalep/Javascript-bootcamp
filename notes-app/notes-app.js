@@ -62,3 +62,9 @@ document.querySelector('#search').addEventListener('input', function (e) {
     renderNotes(notes, filters)
 })
 
+document.querySelector('#name-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+    console.log(e.target.elements.firstName.value)
+    e.target.elements.firstName.value = ''
+})
+

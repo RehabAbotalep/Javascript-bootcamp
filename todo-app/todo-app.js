@@ -37,12 +37,19 @@ const renderTods = function (todos, filters) {
 
 renderTods(todos, filters)
 
-document.querySelector('#add-todo').addEventListener('click', function (e) {
-    console.log('Adding new TODO')
+
+document.querySelector('#search').addEventListener('input', function (e) {
+    filters.searchTxt = e.target.value
+    renderTods(todos, filters)
 })
 
-document.querySelector('#new-todo').addEventListener('input', function (e) {
-    filters.searchTxt = e.target.value
+document.querySelector('#add-todo').addEventListener('submit', function (e) {
+    e.preventDefault()
+    todos.push({
+        title: e.target.elements.title.value,
+        completed: false
+    })
+    e.target.elements.title.value = ''
     renderTods(todos, filters)
 })
 
