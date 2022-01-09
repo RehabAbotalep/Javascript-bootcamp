@@ -72,3 +72,7 @@ document.querySelector('#for-fun').addEventListener('change', function (e) {
     console.log(e.target.checked)
 })
 
+document.querySelector('#sort-by').addEventListener('change', function (e) {
+    console.log(e.target.value)
+})
+
