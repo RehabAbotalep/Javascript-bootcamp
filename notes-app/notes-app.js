@@ -1,13 +1,4 @@
-const notes = [{
-    title: 'my next trip',
-    body: 'I would like to go to Spain'
-}, {
-    title: 'Habbits to work on',
-    body: 'Exercise. Eating a bit better.'
-}, {
-    title: 'Office modification',
-    body: 'Get a new seat'
-}]
+let notes = []
 
 // // Query and remove
 // const p = document.querySelector('p')
@@ -25,6 +16,12 @@ const filters = {
     searchText: ''
 }
 
+const notesJson = localStorage.getItem('notes')
+
+if(notesJson !== null) {
+    notes = JSON.parse(notesJson)
+}
+
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -34,11 +31,33 @@ const renderNotes = function (notes, filters) {
 
     filteredNotes.forEach(function (note) {
         const noteEl = document.createElement('p')
-        noteEl.textContent = note.title
+        if(note.title.length > 0) {
+            noteEl.textContent = note.title
+        } else {
+            noteEl.textContent = 'Unnamed note'
+        }
+        
         document.querySelector('#notes').appendChild(noteEl)
     })
 }
 
+//localStorage.setItem('location', 'Egypt')
+
+console.log(localStorage.getItem('location'))
+
+localStorage.removeItem('location')
+
+// const user = {
+//     name: 'Andrew',
+//     age: 27
+// }
+
+// const userJson = JSON.stringify(user)
+// localStorage.setItem('user', userJson)
+
+const user = JSON.parse(localStorage.getItem('user'))
+
+console.log(`${user.name} is ${user.age}`)
 
 // // create new element
 // const newParagraph = document.createElement('p')
@@ -48,7 +67,12 @@ const renderNotes = function (notes, filters) {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
-    e.target.textContent = 'button was clicked'
+    notes.push({
+        title: '',
+        body: ''
+    })
+    localStorage.setItem('notes', JSON.stringify(notes))
+    renderNotes(notes, filters)
 })
 
 document.querySelector('#remove-all').addEventListener('click', function () {

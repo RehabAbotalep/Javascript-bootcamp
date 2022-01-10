@@ -1,17 +1,14 @@
-const todos = [{
-    title: 'Order cat food',
-    completed: false
-}, {
-    title: 'Clean the kitchen',
-    completed: false,
-}, {
-    title: 'Do work',
-    completed: true,
-}]
+let todos = []
 
 const filters = {
     searchTxt: '',
     hideCompleted: false
+}
+
+const todosJson = localStorage.getItem('todos')
+
+if(todosJson !== null){
+    todos = JSON.parse(todosJson)
 }
 
 const renderTods = function (todos, filters) {
@@ -58,6 +55,7 @@ document.querySelector('#add-todo').addEventListener('submit', function (e) {
         title: e.target.elements.title.value,
         completed: false
     })
+    localStorage.setItem('todos', JSON.stringify(todos))
     e.target.elements.title.value = ''
     renderTods(todos, filters)
 })
