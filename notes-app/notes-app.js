@@ -1,68 +1,10 @@
-let notes = []
-
-// // Query and remove
-// const p = document.querySelector('p')
-// p.remove()
-
-// // Query and remove all 
-// const ps = document.querySelectorAll('p')
-// ps.forEach(function (p){
-//     p.textContent = '******'
-//     console.log(p.textContent)
-//     //p.remove()
-// })
+let notes = getSavedNotes()
 
 const filters = {
     searchText: ''
 }
 
-const notesJson = localStorage.getItem('notes')
 
-if(notesJson !== null) {
-    notes = JSON.parse(notesJson)
-}
-
-const renderNotes = function (notes, filters) {
-    const filteredNotes = notes.filter(function (note) {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
-
-    document.querySelector('#notes').innerHTML = ''
-
-    filteredNotes.forEach(function (note) {
-        const noteEl = document.createElement('p')
-        if(note.title.length > 0) {
-            noteEl.textContent = note.title
-        } else {
-            noteEl.textContent = 'Unnamed note'
-        }
-        
-        document.querySelector('#notes').appendChild(noteEl)
-    })
-}
-
-//localStorage.setItem('location', 'Egypt')
-
-console.log(localStorage.getItem('location'))
-
-localStorage.removeItem('location')
-
-// const user = {
-//     name: 'Andrew',
-//     age: 27
-// }
-
-// const userJson = JSON.stringify(user)
-// localStorage.setItem('user', userJson)
-
-const user = JSON.parse(localStorage.getItem('user'))
-
-console.log(`${user.name} is ${user.age}`)
-
-// // create new element
-// const newParagraph = document.createElement('p')
-// newParagraph.textContent = 'New paragraph from javascript'
-// document.querySelector('body').appendChild(newParagraph)
 
 renderNotes(notes, filters)
 
@@ -71,7 +13,7 @@ document.querySelector('#create-note').addEventListener('click', function (e) {
         title: '',
         body: ''
     })
-    localStorage.setItem('notes', JSON.stringify(notes))
+    saveNotes(notes)
     renderNotes(notes, filters)
 })
 
