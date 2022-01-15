@@ -1,3 +1,4 @@
+
 // Get saved notes from localstorage
 const getSavedNotes = function () {
     const notesJson = localStorage.getItem('notes')
