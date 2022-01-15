@@ -15,9 +15,25 @@ const saveTodos = function (todos) {
 
 // Generate Todo DOM
 const generateTodoDOM = function (todo) {
-    const p = document.createElement('p')
-    p.textContent = todo.title
-    return p
+    const todoEl = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const removeButton = document.createElement('button')
+    const todoText = document.createElement('span')
+
+    // Setup Check box
+    checkbox.setAttribute('type', 'checkbox')
+    todoEl.appendChild(checkbox)
+
+    // Setup todo text
+    todoText.textContent = todo.title
+    todoEl.appendChild(todoText)
+
+    // Setup todo delete button
+    removeButton.textContent = 'x'
+    todoEl.appendChild(removeButton)
+
+
+    return todoEl
 }
 
 // Generate summary DOM
@@ -42,6 +58,7 @@ const renderTods = function (todos, filters) {
         }
     })
 
+
     const inCompletedTodos = filteredTodos.filter(function (todo) {
         return !todo.completed
     })
@@ -54,3 +71,4 @@ const renderTods = function (todos, filters) {
         document.querySelector('#todos').appendChild(generateTodoDOM(todo))
     })
 }
+
