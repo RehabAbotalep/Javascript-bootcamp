@@ -1,4 +1,4 @@
-let notes = getSavedNotes()
+const notes = getSavedNotes()
 
 const filters = {
     searchText: ''
@@ -7,37 +7,22 @@ const filters = {
 renderNotes(notes, filters)
 
 document.querySelector('#create-note').addEventListener('click', function (e) {
+    const id = uuidv4()
+
     notes.push({
-        'id': uuidv4(),
+        id: id,
         title: '',
         body: ''
     })
     saveNotes(notes)
-    renderNotes(notes, filters)
+    location.assign(`/edit.html#${id}`)
 })
 
-document.querySelector('#remove-all').addEventListener('click', function () {
-    document.querySelectorAll('.note').forEach(function (note) {
-        note.remove()
-    })
-})
-
-document.querySelector('#search').addEventListener('input', function (e) {
+document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderNotes(notes, filters)
 })
 
-document.querySelector('#name-form').addEventListener('submit', function (e) {
-    e.preventDefault()
-    console.log(e.target.elements.firstName.value)
-    e.target.elements.firstName.value = ''
-})
-
-document.querySelector('#for-fun').addEventListener('change', function (e) {
-    console.log(e.target.checked)
-})
-
-document.querySelector('#sort-by').addEventListener('change', function (e) {
+document.querySelector('#filter-by').addEventListener('change', function (e) {
     console.log(e.target.value)
 })
-

@@ -1,56 +1,54 @@
-
-// Get saved notes from localstorage
+// Read existing notes from localStorage
 const getSavedNotes = function () {
-    const notesJson = localStorage.getItem('notes')
+    const notesJSON = localStorage.getItem('notes')
 
-    if(notesJson !== null) {
-        return JSON.parse(notesJson)
-    }else {
-        return [];
+    if (notesJSON !== null) {
+        return JSON.parse(notesJSON)
+    } else {
+        return []
     }
 }
 
-// Save notes to localstorage
+// Save the notes to localStorage
 const saveNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
-// Remove note element
-const removeNote = function(id) {
+// Remove a note from the list
+const removeNote = function (id) {
     const noteIndex = notes.findIndex(function (note) {
         return note.id === id
     })
 
-    if(noteIndex > -1){
+    if (noteIndex > -1) {
         notes.splice(noteIndex, 1)
     }
-    
 }
 
-// Generate DOM element
+// Generate the DOM structure for a note
 const generateNoteDOM = function (note) {
     const noteEl = document.createElement('div')
-    const textEl = document.createElement('span')
+    const textEl = document.createElement('a')
     const button = document.createElement('button')
 
-    // Setup the delete button
+    // Setup the remove note button
     button.textContent = 'x'
     noteEl.appendChild(button)
-
     button.addEventListener('click', function () {
         removeNote(note.id)
         saveNotes(notes)
         renderNotes(notes, filters)
     })
 
-    // Setup the title text
-    if(note.title.length > 0) {
+    // Setup the note title text
+    if (note.title.length > 0) {
         textEl.textContent = note.title
     } else {
         textEl.textContent = 'Unnamed note'
     }
-
+    textEl.setAttribute('href', `/edit.html#${note.id}`)
     noteEl.appendChild(textEl)
+
     return noteEl
 }
 
